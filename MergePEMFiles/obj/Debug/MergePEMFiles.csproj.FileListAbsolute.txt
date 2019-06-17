@@ -1,0 +1,9 @@
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\bin\Debug\MergePEMFiles.exe.config
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\bin\Debug\MergePEMFiles.exe
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\bin\Debug\MergePEMFiles.pdb
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.csprojResolveAssemblyReference.cache
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.Form1.resources
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.Properties.Resources.resources
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.csproj.GenerateResource.Cache
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.exe
+C:\Users\NRoechter\Documents\Visual Studio 2015\Projects\MergePEMFiles\MergePEMFiles\obj\Debug\MergePEMFiles.pdb
