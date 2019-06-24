@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
@@ -14,18 +8,33 @@ namespace MergePEMFiles {
         public Form1 () {
             InitializeComponent();
             Main();
+            Environment.Exit(0);
         }
 
         public void Main () {
             var directories = Directory.GetDirectories(@"D:\David\Code\Cert\ssl\");
 
-            foreach(var currentDirectory in directories) {
-                rtbxLog.Text += "Cert: " + currentDirectory.ToString() + '\n' + '\n';
-                MergePEMFiles(currentDirectory.ToString());
+            foreach (var currentDirectory in directories) {
+                if (currentDirectory.ToString().Contains("Challenges") || currentDirectory.ToString().Contains("mail.roechter.org")) {
+                    //nothing
+                } else {
+                    var time = DateTime.Now;
+                    var currentTime = time.Day + "." + time.Month + "." + time.Year + " " + time.Hour + ":" + time.Minute;
+                    var logText = currentTime + '\n' + "Cert: " + currentDirectory.ToString() + '\n';
+
+                    try {
+                        File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + logText);
+                    }
+                    catch (Exception ex) {
+                        File.WriteAllText(@".\MergePEMLog.txt", "FILE CREATED" + '\n' + '\n');
+                        File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + logText);
+                    }
+                    MergePEMFiles(currentDirectory.ToString());
+                }
             }
         }
 
-        private void MergePEMFiles(string pPath) {
+        private void MergePEMFiles (string pPath) {
             var contentList = new string[2];
             foreach (var currentFile in Directory.GetFiles(pPath)) {
                 if (currentFile.ToString().Contains("webbox")) {
@@ -39,7 +48,7 @@ namespace MergePEMFiles {
             var newPEMContent = contentList.ElementAt(0) + '\n' + contentList.ElementAt(1);
             File.WriteAllText(pPath + @"\Cert for webbox.pem", newPEMContent);
 
-            rtbxLog.Text += "Merge successfull." + '\n';
+            File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + "Merge successfull." + '\n' + '\n');
         }
     }
 }
