@@ -13,25 +13,23 @@ namespace MergePEMFiles {
 
         public void Main () {
             var directories = Directory.GetDirectories(@"D:\David\Code\Cert\ssl\");
+            var time = DateTime.Now;
+            var currentTime = time.Day + "." + time.Month + "." + time.Year + " " + time.Hour + ":" + time.Minute;
+            File.WriteAllText(@".\MergePEMLog.txt", currentTime + '\n');
+
 
             foreach (var currentDirectory in directories) {
                 if (currentDirectory.ToString().Contains("Challenges") || currentDirectory.ToString().Contains("mail.roechter.org")) {
                     //nothing
                 } else {
-                    var time = DateTime.Now;
-                    var currentTime = time.Day + "." + time.Month + "." + time.Year + " " + time.Hour + ":" + time.Minute;
-                    var logText = currentTime + '\n' + "Cert: " + currentDirectory.ToString() + '\n';
+                    var logText = "Cert: " + currentDirectory.ToString() + '\n';
+                    File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + logText);
 
-                    try {
-                        File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + logText);
-                    }
-                    catch (Exception ex) {
-                        File.WriteAllText(@".\MergePEMLog.txt", "FILE CREATED" + '\n' + '\n');
-                        File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + logText);
-                    }
                     MergePEMFiles(currentDirectory.ToString());
                 }
             }
+
+            File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + "--------------------" + '\n' + '\n');
         }
 
         private void MergePEMFiles (string pPath) {
