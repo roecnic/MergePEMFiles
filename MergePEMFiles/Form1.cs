@@ -35,7 +35,7 @@ namespace MergePEMFiles {
         private void MergePEMFiles (string pPath) {
             var contentList = new string[2];
             foreach (var currentFile in Directory.GetFiles(pPath)) {
-                if (currentFile.ToString().Contains("webbox")) {
+                if (currentFile.ToString().Contains("Cert")) {
                     //nothing
                 } else if (currentFile.ToString().Contains("-chain"))
                     contentList.SetValue(File.ReadAllText(currentFile.ToString()), 1);
@@ -44,7 +44,7 @@ namespace MergePEMFiles {
             }
 
             var newPEMContent = contentList.ElementAt(0) + '\n' + contentList.ElementAt(1);
-            File.WriteAllText(pPath + @"\Cert for webbox.pem", newPEMContent);
+            File.WriteAllText(pPath + @"\Cert.pem", newPEMContent);
 
             File.WriteAllText(@".\MergePEMLog.txt", File.ReadAllText(@".\MergePEMLog.txt") + "Merge successfull." + '\n' + '\n');
         }
